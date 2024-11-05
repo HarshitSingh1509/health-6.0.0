@@ -625,7 +625,7 @@ public class SwiftHealthPlugin: NSObject, FlutterPlugin {
         let dateTo = Date(timeIntervalSince1970: endTime.doubleValue / 1000)
         
         let sampleType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-        var predicate = HKQuery.predicateForSamples(withStart: dateFrom, end: dateTo, options: .strictStartDate)
+        var predicate = HKQuery.predicateForSamples(withStart: dateFrom, end: dateTo, options: [])
         let manualPredicate = NSPredicate(format: "metadata.%K != YES", HKMetadataKeyWasUserEntered)
         predicate = NSCompoundPredicate(type: .and, subpredicates: [predicate, manualPredicate])
         let query = HKStatisticsQuery(quantityType: sampleType,
